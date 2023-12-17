@@ -1,6 +1,7 @@
 from .CameraClient import CameraClient
 from .WatchClient import WatchClient
 from .ExecuteClient import ExecuteClient
+from .FileClient import FileClient
 from .utils.models import PrinterStatus
 from typing import Callable, Dict, Optional, Any
 
@@ -10,6 +11,7 @@ class BambuClient:
         self.cameraClient = CameraClient(hostname, access_code)
         self.watchClient = WatchClient(hostname, access_code, serial)
         self.executeClient = ExecuteClient(hostname, access_code, serial)
+        self.fileClient = FileClient(hostname, access_code, serial)
 
     ############# Camera Wrappers #############
     def start_camera_stream(self, img_callback):
@@ -42,5 +44,9 @@ class BambuClient:
     def start_print(self, file):
         self.executeClient.start_print(file)
 
-    def get_files(self, directory="/", extension=".3mf"):
-        return self.executeClient.get_files(directory, extension)
+    ############# FileClient Wrappers #############
+    def get_files(self, path="/", extension=".3mf"):
+        return self.fileClient.get_files(path, extension)
+    
+    def download_file(self, local_path: str, remote_path="/timelapse", extension="", verbose=True):
+        return self.fileClient.download_file(remote_path, local_path=local_path, verbose=verbose)

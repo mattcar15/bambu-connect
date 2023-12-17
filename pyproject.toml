@@ -8,6 +8,7 @@ version = "0.1.0"
 description = "Connect with your bambu printer to send and receive mqtt messages and view the Camera"
 readme = "README.md"
 license = { file = "LICENSE" }
+urls = { "Homepage" = "https://github.com/mattcar15/bambu-connect" }
 authors = [{ name = "Matt Carroll", email = "mwcarroll12@gmail.com" }]
 classifiers = [
     "Programming Language :: Python :: 3",

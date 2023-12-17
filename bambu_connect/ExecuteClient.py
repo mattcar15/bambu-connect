@@ -60,28 +60,3 @@ class ExecuteClient:
             }
         )
         self.send_command(payload)
-
-    def get_files(self, directory="/", extension=".3mf"):
-        command = [
-            "curl",
-            "--ftp-pasv",
-            "--insecure",
-            f"ftps://{self.hostname}{directory}",
-            "--user",
-            f"bblp:{self.access_code}",
-        ]
-        result = subprocess.run(command, capture_output=True, text=True)
-
-        filtered_files = []
-        for line in result.stdout.split("\n"):
-            if line.strip():
-                parts = re.split(r"\s+", line, maxsplit=8)
-                # Date string will be in parts[5] (month) and parts[6] (day)
-                # date_str = f"{parts[5]} {parts[6]} {datetime.now().year}"
-                # file_date = datetime.strptime(date_str, "%b %d %Y")
-                filename = parts[-1]
-
-                if filename.endswith(extension):
-                    filtered_files.append(filename)
-
-        return filtered_files
