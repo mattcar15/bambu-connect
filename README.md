@@ -1,7 +1,7 @@
-# BambuPy - Python Library for Bambu Lab Printers
+# Bambu-Connect - Python Library for Bambu Lab Printers
 
 ## Overview
-BambuPy is a Python library designed to provide an easy and intuitive way to interact with Bambu Lab Printers. The goal of this project is to simplify the process of monitoring printers, sending print jobs, watching camera feeds, and performing other operations for users of Bambu Lab Printers. This library encapsulates the complexity of direct device communication, offering a user-friendly interface for various printer-related tasks.
+Bambu-Connect is a Python library designed to provide an easy and intuitive way to interact with Bambu Lab Printers. The goal of this project is to simplify the process of monitoring printers, sending print jobs, watching camera feeds, and performing other operations for users of Bambu Lab Printers. This library encapsulates the complexity of direct device communication, offering a user-friendly interface for various printer-related tasks.
 
 ## Features
 - **Printer Status Monitoring**: Retrieve real-time status information from your printer, including temperatures, print progress, and more.
@@ -11,9 +11,9 @@ BambuPy is a Python library designed to provide an easy and intuitive way to int
 - **Printer Stats Dump**: Fetch detailed printer statistics and operational data for analysis and troubleshooting.
 
 ## Installation
-To install BambuPy, simply use pip:
+To install Bambu-Connect, simply use pip:
 ```
-pip install bambupy
+pip install bambu-connect
 ```
 
 ## Setup
@@ -31,12 +31,12 @@ Checkout the `examples` folder for uses
 
 
 ## Contributing
-Contributions to BambuPy are welcome! Whether it's bug reports, feature requests, or code contributions, feel free to open an issue or submit a pull request on our [GitHub repository](https://github.com/your-github/bambupy).
+Contributions to Bambu-Connect are welcome! Whether it's bug reports, feature requests, or code contributions, feel free to open an issue or submit a pull request on our [GitHub repository](https://github.com/your-github/bambupy).
 
 ## License
-BambuPy is released under the [MIT License](https://opensource.org/licenses/MIT).
+Bambu-Connect is released under the [MIT License](https://opensource.org/licenses/MIT).
 
 ---
 
-*Note: BambuPy is an independent project and is not affiliated with Bambu Lab.*
+*Note: Bambu-Connect is an independent project and is not affiliated with Bambu Lab.*
 
