@@ -18,30 +18,6 @@ class Online:
 
 
 @dataclass
-class AMS:
-    ams: List[Any]
-    ams_exist_bits: str
-    tray_exist_bits: str
-    tray_is_bbl_bits: str
-    tray_tar: str
-    tray_now: str
-    tray_pre: str
-    tray_read_done_bits: str
-    tray_reading_bits: str
-    version: int
-    insert_flag: bool
-    power_on_flag: bool
-
-
-@dataclass
-class IPCam:
-    ipcam_dev: str
-    ipcam_record: str
-    timelapse: str
-    mode_bits: int
-
-
-@dataclass
 class VTTray:
     id: str
     tag_uid: str
@@ -63,6 +39,38 @@ class VTTray:
     remain: int
     k: float
     n: int
+
+
+@dataclass
+class AMSEntry:
+    humidity: str
+    id: str
+    temp: str
+    tray: List[VTTray]
+
+
+@dataclass
+class AMS:
+    ams: List[AMSEntry]
+    ams_exist_bits: str
+    tray_exist_bits: str
+    tray_is_bbl_bits: str
+    tray_tar: str
+    tray_now: str
+    tray_pre: str
+    tray_read_done_bits: str
+    tray_reading_bits: str
+    version: int
+    insert_flag: bool
+    power_on_flag: bool
+
+
+@dataclass
+class IPCam:
+    ipcam_dev: str
+    ipcam_record: str
+    timelapse: str
+    mode_bits: int
 
 
 @dataclass
