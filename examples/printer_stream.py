@@ -35,4 +35,4 @@ except KeyboardInterrupt:
     print("Streaming stopped by user.")
 
 # Stop the client
-bambu_client.stop()
+bambu_client.stop_watch_client()
