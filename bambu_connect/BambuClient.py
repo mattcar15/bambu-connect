@@ -13,6 +13,9 @@ class BambuClient:
         self.executeClient = ExecuteClient(hostname, access_code, serial)
         self.fileClient = FileClient(hostname, access_code, serial)
 
+    def __del__(self):
+        self.executeClient.disconnect()
+
     ############# Camera Wrappers #############
     def start_camera_stream(self, img_callback):
         self.cameraClient.start_stream(img_callback)
@@ -47,6 +50,10 @@ class BambuClient:
     ############# FileClient Wrappers #############
     def get_files(self, path="/", extension=".3mf"):
         return self.fileClient.get_files(path, extension)
-    
-    def download_file(self, local_path: str, remote_path="/timelapse", extension="", verbose=True):
-        return self.fileClient.download_file(remote_path, local_path=local_path, verbose=verbose)
+
+    def download_file(
+        self, local_path: str, remote_path="/timelapse", extension="", verbose=True
+    ):
+        return self.fileClient.download_file(
+            remote_path, local_path=local_path, verbose=verbose
+        )

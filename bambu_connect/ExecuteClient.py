@@ -20,11 +20,13 @@ class ExecuteClient:
         client.connect(self.hostname, 8883, 60)
         return client
 
+    def disconnect(self):
+        self.client.disconnect()
+
     def send_command(self, payload):
         self.client.loop_start()
         self.client.publish(f"device/{self.serial}/request", payload)
         self.client.loop_stop()
-        self.client.disconnect()
 
     def send_gcode(self, gcode):
         payload = f'{{"print": {{"command": "gcode_line", "sequence_id": 2006, "param": "{gcode} \n"}}, "user_id":"1234567890"}}'
