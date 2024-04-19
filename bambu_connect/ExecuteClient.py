@@ -13,7 +13,7 @@ class ExecuteClient:
         self.client = self.__setup_mqtt_client()
 
     def __setup_mqtt_client(self):
-        client = mqtt.Client()
+        client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
         client.username_pw_set("bblp", self.access_code)
         client.tls_set(tls_version=ssl.PROTOCOL_TLS, cert_reqs=ssl.CERT_NONE)
         client.tls_insecure_set(True)
