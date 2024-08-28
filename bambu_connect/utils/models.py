@@ -71,6 +71,9 @@ class IPCam:
     resolution: Optional[str] = None
     tutk_server: Optional[str] = None
     mode_bits: Optional[int] = None
+    resolution: Optional[str] = None
+    tutk_server: Optional[str] = None
+
 
 @dataclass
 class LightsReport:
