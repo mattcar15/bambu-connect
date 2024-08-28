@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bambu-connect"
-version = "0.3.0"
+version = "0.3.1"
 description = "Connect with your bambu printer to send and receive mqtt messages and view the Camera"
 readme = "README.md"
 license = { file = "LICENSE" }
