@@ -39,8 +39,7 @@ class VTTray:
     remain: Optional[int] = None
     k: Optional[float] = None
     n: Optional[int] = None
-    cali_idx: Optional[str] = None
-
+    cali_idx: Optional[int] = None
 
 @dataclass
 class AMSEntry:
@@ -69,6 +68,8 @@ class IPCam:
     ipcam_dev: Optional[str] = None
     ipcam_record: Optional[str] = None
     timelapse: Optional[str] = None
+    resolution: Optional[str] = None
+    tutk_server: Optional[str] = None
     mode_bits: Optional[int] = None
     resolution: Optional[str] = None
     tutk_server: Optional[str] = None
@@ -92,7 +93,7 @@ class UpgradeState:
     module: Optional[str] = None
     new_version_state: Optional[int] = None
     new_ver_list: Optional[List[Any]] = None
-    cur_state_code: Optional[str] = None
+    cur_state_code: Optional[int] = None
 
 
 @dataclass
