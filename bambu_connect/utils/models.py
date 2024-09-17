@@ -1,24 +1,46 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, fields
 from typing import List, Dict, Any, Optional
 import json
 
 
-@dataclass
-class Upload:
+class BaseModel:
+    def __init__(self, **kwargs):
+        # Extract only the fields that are defined in the class
+        class_fields = {f.name for f in fields(self)}
+        for key, value in kwargs.items():
+            if key in class_fields:
+                setattr(self, key, value)
+        # Set default values for missing fields
+        for field_ in fields(self):
+            if not hasattr(self, field_.name):
+                setattr(self, field_.name, field_.default)
+
+
+@dataclass(init=False)
+class Upload(BaseModel):
+    file_size: Optional[int] = None
+    finish_size: Optional[int] = None
     status: Optional[str] = None
     progress: Optional[int] = None
     message: Optional[str] = None
+    oss_url: Optional[str] = None
+    sequence_id: Optional[str] = None
+    speed: Optional[int] = None
+    task_id: Optional[str] = None
+    time_remaining: Optional[int] = None
+    trouble_id: Optional[str] = None
 
 
-@dataclass
-class Online:
+@dataclass(init=False)
+class Online(BaseModel):
     ahb: Optional[bool] = None
+    ext: Optional[bool] = None
     rfid: Optional[bool] = None
     version: Optional[int] = None
 
 
-@dataclass
-class VTTray:
+@dataclass(init=False)
+class VTTray(BaseModel):
     id: Optional[str] = None
     tag_uid: Optional[str] = None
     tray_id_name: Optional[str] = None
@@ -40,18 +62,24 @@ class VTTray:
     k: Optional[float] = None
     n: Optional[int] = None
     cali_idx: Optional[int] = None
+    cols: Optional[list[str]] = None
+    ctype: Optional[int] = None
+    drying_temp: Optional[str] = None
+    drying_time: Optional[str] = None
 
-@dataclass
-class AMSEntry:
+
+@dataclass(init=False)
+class AMSEntry(BaseModel):
     humidity: Optional[str] = None
     id: Optional[str] = None
     temp: Optional[str] = None
     tray: Optional[List[VTTray]] = None
 
-@dataclass
-class AMS:
+@dataclass(init=False)
+class AMS(BaseModel):
     ams: Optional[List[AMSEntry]] = None
     ams_exist_bits: Optional[str] = None
+    ams_exist_bits_raw: Optional[str] = None
     tray_exist_bits: Optional[str] = None
     tray_is_bbl_bits: Optional[str] = None
     tray_tar: Optional[str] = None
@@ -63,25 +91,25 @@ class AMS:
     insert_flag: Optional[bool] = None
     power_on_flag: Optional[bool] = None
 
-@dataclass
-class IPCam:
+@dataclass(init=False)
+class IPCam(BaseModel):
+    agora_service: Optional[str] = None
     ipcam_dev: Optional[str] = None
     ipcam_record: Optional[str] = None
     timelapse: Optional[str] = None
     resolution: Optional[str] = None
     tutk_server: Optional[str] = None
     mode_bits: Optional[int] = None
-    resolution: Optional[str] = None
-    tutk_server: Optional[str] = None
+    rtsp_url: Optional[str] = None
 
 
-@dataclass
-class LightsReport:
+@dataclass(init=False)
+class LightsReport(BaseModel):
     node: Optional[str] = None
     mode: Optional[str] = None
 
-@dataclass
-class UpgradeState:
+@dataclass(init=False)
+class UpgradeState(BaseModel):
     sequence_id: Optional[int] = None
     progress: Optional[str] = None
     status: Optional[str] = None
@@ -94,10 +122,18 @@ class UpgradeState:
     new_version_state: Optional[int] = None
     new_ver_list: Optional[List[Any]] = None
     cur_state_code: Optional[int] = None
+    ahb_new_version_number: Optional[str] = None
+    ams_new_version_number: Optional[str] = None
+    ext_new_version_number: Optional[str] = None
+    idx: Optional[int] = None
+    idx1: Optional[int] = None
+    lower_limit: Optional[str] = None
+    ota_new_version_number: Optional[str] = None
+    sn: Optional[str] = None
 
 
-@dataclass
-class PrinterStatus:
+@dataclass(init=False)
+class PrinterStatus(BaseModel):
     upload: Optional[Upload] = None
     nozzle_temper: Optional[float] = None
     nozzle_target_temper: Optional[float] = None
