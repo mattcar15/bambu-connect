@@ -31,7 +31,7 @@ Checkout the `examples` folder for uses
 
 
 ## Contributing
-Contributions to Bambu-Connect are welcome! Whether it's bug reports, feature requests, or code contributions, feel free to open an issue or submit a pull request on our [GitHub repository](https://github.com/your-github/bambupy).
+Contributions to Bambu-Connect are welcome! Whether it's bug reports, feature requests, or code contributions, feel free to open an issue or submit a pull request on our [GitHub repository](https://github.com/mattcar15/bambu-connect).
 
 ## License
 Bambu-Connect is released under the [MIT License](https://opensource.org/licenses/MIT).
