@@ -94,6 +94,7 @@ class UpgradeState:
     new_version_state: Optional[int] = None
     new_ver_list: Optional[List[Any]] = None
     cur_state_code: Optional[int] = None
+    idx2: Optional[int] = None
 
 
 @dataclass
