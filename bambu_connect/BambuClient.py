@@ -8,16 +8,16 @@ from typing import Callable, Dict, Optional, Any
 
 class BambuClient:
     def __init__(self, hostname: str, access_code: str, serial: str):
-        self.cameraClient = CameraClient(hostname, access_code)
-        self.watchClient = WatchClient(hostname, access_code, serial)
-        self.executeClient = ExecuteClient(hostname, access_code, serial)
-        self.fileClient = FileClient(hostname, access_code, serial)
+        self.cameraClient: CameraClient = CameraClient(hostname, access_code)
+        self.watchClient: WatchClient = WatchClient(hostname, access_code, serial)
+        self.executeClient: ExecuteClient = ExecuteClient(hostname, access_code, serial)
+        self.fileClient: FileClient = FileClient(hostname, access_code, serial)
 
     def __del__(self):
         self.executeClient.disconnect()
 
     ############# Camera Wrappers #############
-    def start_camera_stream(self, img_callback):
+    def start_camera_stream(self, img_callback: Callable[[], None]):
         self.cameraClient.start_stream(img_callback)
 
     def stop_camera_stream(self):
@@ -38,7 +38,7 @@ class BambuClient:
         self.watchClient.stop()
 
     ############# ExecuteClient Wrappers #############
-    def send_gcode(self, gcode):
+    def send_gcode(self, gcode: str):
         self.executeClient.send_gcode(gcode)
 
     def dump_info(self):
@@ -48,11 +48,15 @@ class BambuClient:
         self.executeClient.start_print(file)
 
     ############# FileClient Wrappers #############
-    def get_files(self, path="/", extension=".3mf"):
+    def get_files(self, path: str = "/", extension: str = ".3mf"):
         return self.fileClient.get_files(path, extension)
 
     def download_file(
-        self, local_path: str, remote_path="/timelapse", extension="", verbose=True
+        self, 
+        local_path: str, 
+        remote_path: str = "/timelapse", 
+        extension: str = "", 
+        verbose: bool = True
     ):
         return self.fileClient.download_file(
             remote_path, local_path=local_path, verbose=verbose

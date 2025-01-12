@@ -28,7 +28,9 @@ class ExecuteClient:
         self.client.publish(f"device/{self.serial}/request", payload)
         self.client.loop_stop()
 
-    def send_gcode(self, gcode):
+    def send_gcode(self, gcode: str):
+        if not isinstance(gcode, str):
+            raise ValueError("The 'gcode' parameter must be a string.")
         payload = f'{{"print": {{"command": "gcode_line", "sequence_id": 2006, "param": "{gcode} \n"}}, "user_id":"1234567890"}}'
         self.send_command(payload)
 
@@ -38,7 +40,9 @@ class ExecuteClient:
         self.send_command(payload)
 
     # when using this, choose the send to printer option in bambu or cura slicer. Provide the file name (no path)
-    def start_print(self, file):
+    def start_print(self, file: str):
+        if not isinstance(file, str):
+            raise ValueError("The 'file' parameter must be a string.")
         payload = json.dumps(
             {
                 "print": {

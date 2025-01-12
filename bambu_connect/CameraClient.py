@@ -3,10 +3,11 @@ import struct
 import socket
 import ssl
 import threading
+from typing import Callable
 
 
 class CameraClient:
-    def __init__(self, hostname, access_code, port=6000):
+    def __init__(self, hostname: str, access_code: str, port: int = 6000):
         self.hostname = hostname
         self.port = port
         self.username = "bblp"
@@ -59,7 +60,7 @@ class CameraClient:
                     if img:
                         return bytes(img)
 
-    def capture_stream(self, img_callback):
+    def capture_stream(self, img_callback: Callable[[bytes], None]):
         ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
         ctx.check_hostname = False
         ctx.verify_mode = ssl.CERT_NONE
@@ -81,7 +82,7 @@ class CameraClient:
                     if img:
                         img_callback(bytes(img))
 
-    def start_stream(self, img_callback):
+    def start_stream(self, img_callback: Callable[[bytes], None]):
         if self.streaming:
             print("Stream already running.")
             return
