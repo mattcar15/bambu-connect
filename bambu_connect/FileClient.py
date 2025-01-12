@@ -31,7 +31,7 @@ class FileClient:
 
         return filtered_files
 
-    def download_file(self, remote_path: str, local_path: str, verbose=True):
+    def download_file(self, remote_path: str, local_path: str, verbose: bool = True):
         if not os.path.exists(local_path):
             os.makedirs(local_path)
 

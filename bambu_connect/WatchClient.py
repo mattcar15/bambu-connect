@@ -43,8 +43,8 @@ class WatchClient:
     def stop(self):
         self.client.loop_stop()
         self.client.disconnect()
-
-    def on_message(self, client, userdata, msg):
+        
+    def on_message(self, msg: str):
         doc = json.loads(msg.payload)
         try:
             if not doc:
@@ -56,4 +56,4 @@ class WatchClient:
             if self.message_callback:
                 self.message_callback(self.printerStatus)
         except KeyError:
-            pass
+            return
